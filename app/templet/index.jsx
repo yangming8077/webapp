@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from 'base/button';
 import Input from 'base/input';
 import '../style/index.less';
+
 class App extends React.Component{
     constructor() {
         super();
@@ -12,9 +13,10 @@ class App extends React.Component{
         return (
           <div className="container">
             <section className="jumbotron">
-              <h3 className="jumbotron-heading">2Search Github Users</h3>
-              <Button/>111
+              <h2 className="test">112Search Github Users</h2>
+              <Button/>122211111111
               <Input />
+
             </section>
           </div>
         )
