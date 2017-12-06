@@ -10,5 +10,5 @@
 | router  | 路由配置 | 
 | static | 静态资源 | 
 | style | 样式 | 
-| templet | 模板文件 | 
+| entry | 入口文件 | 
 | util |  公共方法 | 

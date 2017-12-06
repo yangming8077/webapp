@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
-    "build": "webpack-dev-server ./webpack.production.config.js --progress --colors --hot"
+    "mock": "node --harmony ./mock/server.js",
+    "start": "webpack-dev-server --hot --inline --colors",
+    "build": "rm -rf ./build && NODE_ENV=production webpack --config webpack.production.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -28,19 +29,28 @@
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "postcss-loader": "^2.0.9",
     "postcss-px2rem": "^0.3.0",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.2.0",
+    "react-hot-loader": "^3.1.3",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.5"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "fastclick": "^1.0.6",
+    "lib-flexible": "^0.3.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-addons-pure-render-mixin": "^15.6.2",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "whatwg-fetch": "^1.1.1"
   }
 }

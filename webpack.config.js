@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 //模板文件插件
 const HtmlwebpackPlugin = require('html-webpack-plugin');
-//文件抽离插件
+//代码抽离插件
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 //目录设置
 const ROOT_PATH = path.resolve(__dirname);
@@ -14,7 +14,7 @@ module.exports = {
   entry: {
     'index': [
       'webpack-dev-server/client?http://localhost:9999/',
-      './app/templet/index.jsx'
+      './app/entry/index.sample.js'
     ]
   },
   //出口文件配置  
@@ -27,16 +27,23 @@ module.exports = {
   //目录配置      
   resolve: {
     extensions: ['.js', '.jsx'],
-    //配置组件目录
     alias: {
+      //示例目录配置
+      'sample': path.resolve(__dirname, 'app/containers/sample'),
+      //基础组件目录配置
       'base': path.resolve(__dirname, 'app/components/base'),
-      'mbank': path.resolve(__dirname, 'app/components/mbank')
+      //业务组件目录配置
+      'mbank': path.resolve(__dirname, 'app/components/mbank'),
+      //配置公共方法目录
+      'util': path.resolve(__dirname, 'app/util'),
+      'api': path.resolve(__dirname, 'app/constants/api.js'),
+      'fetch': path.resolve(__dirname, 'app/util/fetch.js'),
+      'native': path.resolve(__dirname, 'app/util/native.js')
     }
   },
   //模块配置        
   module: {
-    loaders: [
-      {
+    loaders: [{
         //babel-loader配置
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -51,8 +58,7 @@ module.exports = {
         //样式loader配置
         test: /\.(css|less)$/,
         use: ExtractTextPlugin.extract({
-          use: [
-            {
+          use: [{
               loader: 'css-loader',
               //css设置
               options: {
@@ -94,7 +100,7 @@ module.exports = {
     //模板文件配置
     new HtmlwebpackPlugin({
       title: 'test',
-      template: APP_PATH + '/templet/index.html',
+      template: APP_PATH + '/entry/index.sample.html',
       filename: 'index.html',
       chunks: ['index'],
       inject: true,
@@ -127,8 +133,6 @@ module.exports = {
       errors: true,
       warnings: true,
     },
-    //默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录
-    contentBase: "./",
     //http代理
     proxy: {
       // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
