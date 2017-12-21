@@ -1,7 +1,9 @@
-@import '../../../../style/index';
-@buttonPrefixCls: ryt-button;
-@tappableActivePrefixCls: Tappable-active;
+@import '../../style/mixins';
+@import '../../style/themes/default';
+@buttonPrefixCls: am-button;
+
 .@{buttonPrefixCls} {
+  // do not use width:100%, can not set margin
   display: block;
   outline: 0 none;
   -webkit-appearance: none;
@@ -11,14 +13,25 @@
   font-size: @button-font-size;
   height: @button-height;
   line-height: @button-height;
-  border-radius: @button-radius;
+
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
-  white-space: nowrap; // default
+  white-space: nowrap;
+
+  // default
   color: @color-text-base;
   background-color: @fill-base;
-  border: @border-width-sm solid @border-color-base; // &:active, // uc browser not work normal
+
+  .hairline('all', @border-color-base, @radius-md);
+
+  // Multiple buttons inline arranged, the last one border-right may not display
+  &-borderfix {
+    &:before {
+      transform: scale(0.49)!important;
+    }
+  }
+
   &&-active {
     background-color: @fill-tap;
   }
@@ -30,56 +43,46 @@
   &-primary {
     color: @color-text-base-inverse;
     background-color: @primary-button-fill;
-    border: @border-width-sm solid @primary-button-fill; // &:active, // uc browser not work normal
+    .hairline('all', @primary-button-fill, @radius-md);
+
     &.@{buttonPrefixCls}-active {
       color: fade(@color-text-base-inverse, 30%);
       background-color: @primary-button-fill-tap;
-    }
-    &.@{buttonPrefixCls}-disabled {
-      color: fade(@color-text-base, 30%);
-      background: @primary-button-fill-disabled; // opacity: 0.4;
-      border: 0;
-    }
-  }
-
-  &-ghost {
-    color: @ghost-button-color;
-    background-color: @fill-base;
-    border: @border-width-sm solid @ghost-button-border-color; // &:active, // uc browser not work normal
-    &.@{buttonPrefixCls}-active {
-      color: @ghost-button-fill-tap;
-      background-color: @fill-base;
-      border-color: @ghost-button-border-color;
-    }
-    &.@{buttonPrefixCls}-disabled {
-      color: fade(@color-text-base, 10%);
-      border-color: fade(@color-text-base, 10%);
-      opacity: 1; // override default opacity: 0.6
-    }
-  }
-
-  &-warning {
-    color: @color-text-base-inverse;
-    border-color: @warning-button-fill;
-    background-color: @warning-button-fill; // &:active, // uc browser not work normal
-    &.@{buttonPrefixCls}-active {
-      color: fade(@color-text-base-inverse, 30%);
-      background-color: @warning-button-fill-tap;
-      border-color: @warning-button-fill-tap;
     }
     &.@{buttonPrefixCls}-disabled {
       color: fade(@color-text-base-inverse, 60%);
       opacity: 0.4;
     }
   }
-  &,
-  &-primary,
-  &-ghost,
+
+  &-ghost {
+    color: @ghost-button-color;
+    background-color: transparent;
+    .hairline('all', @ghost-button-color, @radius-md);
+
+    &.@{buttonPrefixCls}-active {
+      color: @ghost-button-fill-tap;
+      background-color: transparent;
+      .hairline('all', @ghost-button-fill-tap, @radius-md);
+    }
+    &.@{buttonPrefixCls}-disabled {
+      color: fade(@color-text-base, 10%);
+      .hairline('all', fade(@color-text-base, 10%), @radius-md);
+      opacity: 1; // override default opacity: 0.6
+    }
+  }
+
   &-warning {
-    &.@{buttonPrefixCls}-across {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
+    color: @color-text-base-inverse;
+    background-color: @warning-button-fill;
+
+    &.@{buttonPrefixCls}-active {
+      color: fade(@color-text-base-inverse, 30%);
+      background-color: @warning-button-fill-tap;
+    }
+    &.@{buttonPrefixCls}-disabled {
+      color: fade(@color-text-base-inverse, 60%);
+      opacity: 0.4;
     }
   }
 
@@ -93,7 +96,6 @@
     height: @button-height-sm;
     line-height: @button-height-sm;
     padding: 0 @h-spacing-lg;
-    border-radius: @button-radius;
   }
 
   &-icon {
@@ -102,34 +104,7 @@
     justify-content: center;
   }
 
-  >.ryt-icon {
-    display: inline-block;
-    vertical-align: middle;
+  > .@{buttonPrefixCls}-icon {
     margin-right: 0.5em;
-    margin-bottom: 5px;
   }
-  &-group {
-    display: block;
-    .@{buttonPrefixCls} {
-      width: 100%;
-      flex: 1;
-    }
-    .@{buttonPrefixCls}:not(:last-child) {
-      margin-bottom: @h-spacing-lg;
-    }
-  }
-  &-group-inline {
-    display: flex;
-    .@{buttonPrefixCls} {
-      width: 100%;
-      flex: 1;
-    }
-    .@{buttonPrefixCls}:not(:last-child) {
-      margin-right: @h-spacing-lg;
-    }
-  }
-}
-//React点击效果样式,不是React项目可删除
-.@{tappableActivePrefixCls} {
-  opacity: 0.8;
 }

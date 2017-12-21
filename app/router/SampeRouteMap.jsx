@@ -4,7 +4,7 @@ import { HashRouter, Switch, Route, Redirect, withRouter,hashHistory } from 'rea
 // 引入原始的配置模块
 import App from 'sample';
 import Home from 'sample/home';
-import List from 'sample/list';
+import Button from 'sample/button';
 const Root = () => (
     <Switch>
       <Route path="/" render={(props) => (
@@ -13,7 +13,7 @@ const Root = () => (
             {/* <Route path="/" exact component={App} /> */}
             <Route path="/" exact component={Home}/>
             <Route path="/Home" component={Home} />
-            <Route path="/List" component={List} />
+            <Route path="/Button" component={Button} />
             <Redirect from="/undefined" to={{ pathname: '/', search: '?mold=redirect' }} />
           </Switch>
         </App>

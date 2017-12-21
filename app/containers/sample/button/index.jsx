@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import List from 'sample/list';
 import { Button } from 'base'
-import ReadMe from '../../../../README.md';
+import MdText from 'base/button/button.md';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -16,10 +16,10 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <div>is Home</div>
+                <div>is Button</div>
                 <Button type="ghost" size="small" inline>small</Button>
                 {/* <Input /> */}
-                <div id="appContainer" className="markdown-body"><ReadMe /></div>
+                <MdText></MdText>
             </div>
         );
     }

@@ -3,6 +3,9 @@ import 'lib-flexible';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter,BrowserRouter, Route ,hashHistory} from 'react-router-dom';
+import '../containers/sample/style/markdown.less';
+import '../containers/sample/style/markdown-skin.less';
+
 //解决移动端300毫秒延迟
 var FastClick = require('fastclick')
 FastClick.attach(document.body)

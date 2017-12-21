@@ -14,7 +14,7 @@ module.exports = {
   entry: {
     'index': [
       'webpack-dev-server/client?http://localhost:9999/',
-      './app/entry/index.sample.js'
+      './app/entrys/index.sample.js'
     ]
   },
   //出口文件配置  
@@ -51,7 +51,7 @@ module.exports = {
         include: APP_PATH,
         query: {
           //添加两个presents 使用这两种presets处理js或者jsx文件
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-0']
         }
       },
       {
@@ -92,7 +92,13 @@ module.exports = {
         test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
         loader: 'url?limit=8192&name=static/images/[hash:8].[name].[ext]'
         // 大于8192字节的图片正常打包，小于8192字节的图片以 base64 的方式引用。
+      },
+      {
+        //md说明文件配置
+        test: /\.md$/,
+        loader: 'babel-loader!markdown-it-react-loader'
       }
+
     ]
   },
   //插件配置
@@ -100,7 +106,7 @@ module.exports = {
     //模板文件配置
     new HtmlwebpackPlugin({
       title: 'test',
-      template: APP_PATH + '/entry/index.sample.html',
+      template: APP_PATH + '/entrys/index.sample.html',
       filename: 'index.html',
       chunks: ['index'],
       inject: true,
