@@ -2,7 +2,6 @@ import isMobile from './mobile-check';
 
 const native = function () {
   const ua = navigator.userAgent || navigator.vendor || this.opera;
-
   const os = function () {
     if (isMobile()) {
       if (ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1)
@@ -12,8 +11,6 @@ const native = function () {
     }
     return 'unknown'
   }();
-
-
   const iosBridge = function () {
     let x5 = window.x5 = {
       commandQueue: [],
@@ -104,9 +101,7 @@ const native = function () {
   };
 
   const callClient = function (action, param, className) {
-
     param = makeCallback(param);
-
     if (os == 'ios') {
       var data = {
         1: action,
@@ -117,7 +112,6 @@ const native = function () {
       window[className][action](JSON.stringify(param));
     }
   };
-
 
   return {
     callClientForUI(action, param){

@@ -1,55 +1,21 @@
-# markdown-it-react-loader
+### 安装
 
-用Markdown提供一份直观的React文档，有可运行的示例，有示例源代码，有示例的说明。
 
-这样用户看起来直观，编写者写起来也直观，维护成本低。
+### 运行命令
 
-经过几番尝试，结合 React 的特点。写了一套处理 Markdown 文件的 webpack loader，可以将 Markdown 转成 React 文件。
-
-本md对应生成的文档是[readme.md](https://liyatang.github.io/markdown-it-react-loader/)
-
----
-
-## Install
-
-`npm install markdown-it-react-loader`
-
-在 webpack 中加入 loader 
+### 轮子说明
 
 ```js
-{
-    test: /\.md$/,
-    loader: 'babel!markdown-it-react-loader'
-}
-```
-
-随后把md文件当成一个react component去使用即可。比如本工程中的demo
-
-```js
-import ReadMe from '../README.md';
-```
-
-如需运行demo `npm install; npm start;` 打开 http://localhost:5000
-
-### options
-
-- `className` 默认'doc'，页面容器的class
-
-```js
-// webpack.config.js
-module.export = {
-    //...省略
-    markdownItReact: function () {
-        return {
-            className: 'doc' // 默认也是doc
-        };
-    }
-};
+//CSS样式兼容
+"postcss-loader": "^2.0.10",
+//PX转换REM
+"postcss-px2rem": "^0.3.0",
 ```
 
 具体见`webpack.config.js`
 
 ### 样式
+
 
 提供样式文件`index.css`，可直接引入或自定义。
 
@@ -153,7 +119,11 @@ class Test extends React.Component {
     ```
     :::
 ```
+### table
 
+Header1 | Header2
+------- | -------
+cell1 | cell2
 
 ### 花括号 (表达式）
 

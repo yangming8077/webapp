@@ -1,44 +1,27 @@
-@import '../../style/themes/default';
-@import '../../style/mixins';
+@import "~uiw-iconfont/fonts/w-iconfont.css";
+.w-icon-spin:before {
+  animation: loading-circle 1s infinite linear;
+}
+[class^="w-icon-"], [class*=" w-icon-"] {
+  font-size: 12px;
+}
+[class^="w-icon-"]:before, {
+  vertical-align: middle;
+  display: inline-block;
+}
+[class^="w-icon-"]:after, [class*=" w-icon-"]:after {
+  vertical-align: middle;
+  content: '';
+  height: 100%;
+  width: 0;
+  display: inline-block;
+}
 
-.am-icon {
-  fill: currentColor;
-  background-size: cover;
-  width: @icon-size-md;
-  height: @icon-size-md;
-
-  &-xxs {
-    width: @icon-size-xxs;
-    height: @icon-size-xxs;
+@keyframes loading-circle {
+  0% {
+    transform: rotate(0deg);
   }
-
-  &-xs {
-    width: @icon-size-xs;
-    height: @icon-size-xs;
-  }
-
-  &-sm {
-    width: @icon-size-sm;
-    height: @icon-size-sm;
-  }
-
-  &-md {
-    width: @icon-size-md;
-    height: @icon-size-md;
-  }
-
-  &-lg {
-    width: @icon-size-lg;
-    height: @icon-size-lg;
-  }
-
-  &-loading {
-    animation: cirle-anim 1s linear infinite;
-  }
-
-  @keyframes cirle-anim {
-    100% {
-      transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
   }
 }
